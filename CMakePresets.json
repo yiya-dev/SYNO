@@ -9,7 +9,7 @@
         "strategy": "set",
         "value": "x64"
       },
-      "binaryDir": "${sourceDir}/build/_build/windows-debug",
+      "binaryDir": "$env{USERPROFILE}/SYNO-Build/windows-debug",
       "cacheVariables": {
         "SYNO_BUILD_TESTS": "ON"
       }
@@ -22,7 +22,7 @@
         "strategy": "set",
         "value": "x64"
       },
-      "binaryDir": "${sourceDir}/build/_build/windows-release",
+      "binaryDir": "$env{USERPROFILE}/SYNO-Build/windows-release",
       "cacheVariables": {
         "SYNO_BUILD_TESTS": "ON"
       }
