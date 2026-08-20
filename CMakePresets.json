@@ -4,20 +4,26 @@
     {
       "name": "windows-debug",
       "displayName": "SYNO Windows Debug",
-      "generator": "Ninja",
+      "generator": "Visual Studio 18 2026",
+      "architecture": {
+        "strategy": "set",
+        "value": "x64"
+      },
       "binaryDir": "${sourceDir}/build/_build/windows-debug",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
         "SYNO_BUILD_TESTS": "ON"
       }
     },
     {
       "name": "windows-release",
       "displayName": "SYNO Windows Release",
-      "generator": "Ninja",
+      "generator": "Visual Studio 18 2026",
+      "architecture": {
+        "strategy": "set",
+        "value": "x64"
+      },
       "binaryDir": "${sourceDir}/build/_build/windows-release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
         "SYNO_BUILD_TESTS": "ON"
       }
     }
@@ -25,11 +31,15 @@
   "buildPresets": [
     {
       "name": "windows-debug",
-      "configurePreset": "windows-debug"
+      "displayName": "Build SYNO Windows Debug",
+      "configurePreset": "windows-debug",
+      "configuration": "Debug"
     },
     {
       "name": "windows-release",
-      "configurePreset": "windows-release"
+      "displayName": "Build SYNO Windows Release",
+      "configurePreset": "windows-release",
+      "configuration": "Release"
     }
   ]
 }
