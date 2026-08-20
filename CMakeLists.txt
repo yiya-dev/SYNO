@@ -31,6 +31,8 @@ juce_generate_juce_header(SYNO)
 target_sources(SYNO
     PRIVATE
         src/syno/app/main.cpp
+        src/syno/audio/AudioEngine.cpp
+        src/syno/audio/AudioEngine.h
 )
 
 target_compile_definitions(SYNO
@@ -44,6 +46,7 @@ target_compile_definitions(SYNO
 target_link_libraries(SYNO
     PRIVATE
         juce::juce_gui_extra
+        juce::juce_audio_devices
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

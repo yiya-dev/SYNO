@@ -1,4 +1,5 @@
 #include <JuceHeader.h>
+#include "../audio/AudioEngine.h"
 
 class MainComponent final : public juce::Component
 {
@@ -44,6 +45,13 @@ public:
 
     void initialise(const juce::String&) override
     {
+        audioEngine = std::make_unique<syno::AudioEngine>();
+
+        if (!audioEngine->initialise())
+        {
+            juce::Logger::writeToLog("SYNO: audio engine failed to initialise.");
+        }
+
         mainWindow = std::make_unique<MainWindow>();
     }
 
@@ -85,6 +93,7 @@ private:
     };
 
     std::unique_ptr<MainWindow> mainWindow;
+    std::unique_ptr<syno::AudioEngine> audioEngine;
 };
 
 START_JUCE_APPLICATION(SynoApplication)
