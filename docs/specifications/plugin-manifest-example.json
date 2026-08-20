@@ -1,0 +1,8 @@
+{
+  "manufacturer": "Example Manufacturer",
+  "name": "Example Plugin",
+  "format": "VST3",
+  "version": "1.0",
+  "identifier": "example-identifier",
+  "state": null
+}

@@ -1,0 +1,9 @@
+{
+  "format": "syno-project",
+  "version": 1,
+  "project_id": "example-project",
+  "name": "Example SYNO Project",
+  "tempo": 120.0,
+  "time_signature": [4, 4],
+  "tracks": []
+}

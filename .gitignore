@@ -1,0 +1,68 @@
+# Build output
+build/_build/
+out/
+bin/
+lib/
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.pdb
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+install_manifest.txt
+
+# Visual Studio / VS Code
+.vs/
+.vscode/*.log
+*.code-workspace
+
+# IDE caches
+.idea/
+*.user
+*.suo
+*.userosscache
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+
+# Node/web future tooling
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Generated project/audio files used during development
+*.bak
+*.tmp
+*.cache
+*.log
+
+# JUCE-generated / plugin debug output
+JuceLibraryCode/
+
+# Secrets
+*.secret
+secrets/
+config.local.*
+
+# Local machine notes
+LOCAL_NOTES.md
