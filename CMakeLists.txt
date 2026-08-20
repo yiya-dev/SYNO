@@ -1,28 +1,54 @@
 cmake_minimum_required(VERSION 3.22)
-project(SYNO VERSION 0.1.0 LANGUAGES CXX)
+
+project(SYNO
+    VERSION 0.1.0
+    DESCRIPTION "SYNO Digital Audio Workstation"
+    LANGUAGES C CXX
+)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(SYNO_BUILD_TESTS "Build SYNO tests" ON)
-option(SYNO_BUILD_SERVER_TOOLS "Build native auxiliary tools" OFF)
 
-# JUCE integration will be pinned here once the first native prototype is established.
-# Preferred workflow: add JUCE as a git submodule or FetchContent with a pinned commit/tag.
-# Do not use an unpinned dependency for release builds.
-
-add_executable(syno-bootstrap
-    src/syno/app/main.cpp
+# JUCE
+add_subdirectory(
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/JUCE
+    ${CMAKE_CURRENT_BINARY_DIR}/JUCE
 )
 
-target_compile_features(syno-bootstrap PRIVATE cxx_std_17)
+# SYNO application
+juce_add_gui_app(SYNO
+    PRODUCT_NAME "SYNO"
+    COMPANY_NAME "YIYA"
+    BUNDLE_ID "com.yiya.syno"
+    VERSION "0.1.0"
+)
 
-if(MSVC)
-    target_compile_options(syno-bootstrap PRIVATE /W4 /permissive-)
-else()
-    target_compile_options(syno-bootstrap PRIVATE -Wall -Wextra -Wpedantic)
-endif()
+juce_generate_juce_header(SYNO)
+
+target_sources(SYNO
+    PRIVATE
+        src/syno/app/main.cpp
+)
+
+target_compile_definitions(SYNO
+    PRIVATE
+        JUCE_WEB_BROWSER=0
+        JUCE_USE_CURL=0
+        JUCE_APPLICATION_NAME_STRING="$<TARGET_PROPERTY:SYNO,JUCE_PRODUCT_NAME>"
+        JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:SYNO,JUCE_VERSION>"
+)
+
+target_link_libraries(SYNO
+    PRIVATE
+        juce::juce_gui_extra
+    PUBLIC
+        juce::juce_recommended_config_flags
+        juce::juce_recommended_lto_flags
+        juce::juce_recommended_warning_flags
+)
 
 if(SYNO_BUILD_TESTS)
     enable_testing()
