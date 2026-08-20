@@ -1,5 +1,6 @@
 {
   "cmake.configureOnOpen": false,
   "C_Cpp.default.cppStandard": "c++17",
-  "python.analysis.autoImportCompletions": true
+  "python.analysis.autoImportCompletions": true,
+  "cmake.buildBeforeRun": true
 }
